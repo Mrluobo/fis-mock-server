@@ -1,0 +1,21 @@
+{
+  "name": "fis-mock-server",
+  "version": "1.0.0",
+  "description": "fis-mock-server",
+  "main": "app.js",
+  "bin": {
+    "fis-mock-serve": "./bin/fis-mock-server"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mrluobo",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^1.1.2",
+    "koa-router": "^5.3.0",
+    "koa-static": "^2.0.0",
+    "koa-static-cache": "^3.1.4",
+    "pm2": "^1.0.0"
+  }
+}
