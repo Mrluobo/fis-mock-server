@@ -44,17 +44,74 @@ app.use(serve(path.join(home, '.mock'), {
 //}))
 
 
-
 // 优先处理文件上传 multipart类型请求
-app.use(function * (next){
-    if(!this.request.is('multipart/*')){
+app.use(function * (next) {
+    if (!this.request.is('multipart/*')) {
         return yield next;
     }
-   //  var parts = fileparse(this);
+    var options = {
+        hostname: '',
+        port: null,
+        path: '/',
+        method: 'POST',
+    };
+    options.hostname = config.hostname;
+    if (config.port) {
+        options.port = config.port;
+    }
+
+    var data;
+    var self = this;
+
+    options.path = this.request.url;
+    options.headers = this.request.header;
+    options.headers.referer = options.hostname + options.path;
+    options.headers.host = options.hostname;
+    data = yield new Promise(function (reslove, reject) {
+        var req = http.request(options, function (res) {
+            self.res.writeHead(res.statusCode, res.headers);
+
+            res.pipe(self.res);
+
+            //res.on('data', function (data) {
+            //    self.res.write(data);
+            //})
+            //res.on('end', function () {
+            //    self.res.end();
+            //    reslove()
+            //})
+        })
+        req.on('error', function (error) {
+            console.log(error);
+        })
+        self.req.pipe(req,{end:false})
+        self.req.on('end',function(){
+            console.log(2222)
+            req.end()
+            console.log(self.req);
+            console.log(req);
+        })
+        // req.end();
+    })
+
+    //var parts = fileparse(this);
+    //var part
+    //while (part = yield parts) {
+    //    if (part.length) {
+    //        // arrays are busboy fields
+    //        console.log('key: ' + part[0])
+    //        console.log('value: ' + part[1])
+    //    } else {
+    //        // otherwise, it's a stream
+    //        part.pipe(fs.createWriteStream('some file.txt'))
+    //    }
+    //}
+
+    //  var parts = fileparse(this);
 })
 
 app.use(function *(next) {
-    if(this.request.is('multipart/*')){
+    if (this.request.is('multipart/*')) {
         return yield next;
     }
     var body;
@@ -84,7 +141,7 @@ app.use(function *(next) {
             var req = http.request(options, function (res) {
                 self.res.writeHead(res.statusCode, res.headers);
 
-                 res.pipe(self.res);
+                res.pipe(self.res);
 
                 //res.on('data', function (data) {
                 //    self.res.write(data);
@@ -127,8 +184,8 @@ app.use(function *(next) {
             // console.log(this);
             // console.log(this.request.pipe);
 
-             req.write(postData);
-             req.end();
+            req.write(postData);
+            req.end();
         })
         console.log(data)
     }
@@ -136,24 +193,6 @@ app.use(function *(next) {
 
 app.listen(3000);
 console.log('listen at : 3000')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // 以下内容为  解析zlib

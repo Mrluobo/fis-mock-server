@@ -3,13 +3,13 @@ mkdir ~/.mock
 dir=$(cd "$(dirname "$0")"; cd ..; pwd)
 echo $dir
 if [ $1 = "start" ]; then
-    $dir/node_modules/pm2/bin/pm2 start $dir/app.js
+    $dir/node_modules/pm2/bin/pm2 start $dir/index.js
 fi
 if [ $1 = "stop" ]; then
-    $dir/node_modules/pm2/bin/pm2 stop $dir/app.js
+    $dir/node_modules/pm2/bin/pm2 stop $dir/index.js
 fi
 if [ $1 = "restart" ]; then
-    $dir/node_modules/pm2/bin/pm2 restart $dir/app.js
+    $dir/node_modules/pm2/bin/pm2 restart $dir/index.js
 fi
 if [ $1 = "kill" ]; then
     $dir/node_modules/pm2/bin/pm2 kill
