@@ -1,9 +1,10 @@
 #!/bin/bash
 mkdir ~/.mock
-dir=$(cd "$(dirname "$0")"; cd ..; pwd)
+#dir=$(cd "$(dirname "$0")"; cd ..; pwd)
+dir="/usr/local/lib/node_modules/fis-mock-server"
 echo $dir
 if [ $1 = "start" ]; then
-    $dir/node_modules/pm2/bin/pm2 start $dir/index.js
+
 fi
 if [ $1 = "stop" ]; then
     $dir/node_modules/pm2/bin/pm2 stop $dir/index.js

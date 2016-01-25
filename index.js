@@ -7,7 +7,6 @@ var koa = require('koa');
 var app = koa();
 var http = require('http');
 var path = require('path');
-var querystring = require('querystring');
 var zlib = require('zlib');
 var parse = require('co-body');
 var serve = require('koa-static');
@@ -107,8 +106,7 @@ app.use(function *() {
     options.headers.referer = options.hostname + options.path;
     options.headers.host = options.hostname;
     options.method = 'POST';
-    var body = yield parse(this);
-    var postData = querystring.stringify(body);
+    var postData = yield parse(this);
     yield new Promise(function (reslove, reject) {
         var req = http.request(options, function (res) {
             self.res.writeHead(res.statusCode, res.headers);
