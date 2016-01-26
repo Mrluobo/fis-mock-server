@@ -1,7 +1,7 @@
 fis-mock-server
  # fis-mock-server [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
-[![npm version](https://badge.fury.io/js/fis-mock-server.svg)](https://badge.fury.io/js/fis-mock-server)
 a rewrite server build with [koa](https://github.com/koajs/koa) and [pm2](https://github.com/Unitech/pm2)
+
  ## Installation
 
  Run `npm install fis-mock-server -g`
