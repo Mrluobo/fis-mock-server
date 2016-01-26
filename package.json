@@ -1,6 +1,6 @@
 {
   "name": "fis-mock-server",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "fis-mock-server",
   "main": "app.js",
   "bin": {
