@@ -24,6 +24,17 @@ module.exports = {
 }
 ```
 
+add
+```
+fis.match('server-conf.js',{
+    useHash:false,
+    release:'/$0',
+    isMod:false
+})
+
+```
+into `fis-conf.js`
+
 then release files in `~/.mock/` use [fis3](https://github.com/fex-team/fis3)
 
 `fis3 release -d ~/.mock/`

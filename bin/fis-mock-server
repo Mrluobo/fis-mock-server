@@ -4,7 +4,7 @@ mkdir ~/.mock
 dir="/usr/local/lib/node_modules/fis-mock-server"
 echo $dir
 if [ $1 = "start" ]; then
-    $dir/node_modules/pm2/bin/pm2 start $dir/index.js
+    $dir/node_modules/pm2/bin/pm2 start $dir/index.js --node-args="--harmony"
 fi
 if [ $1 = "stop" ]; then
     $dir/node_modules/pm2/bin/pm2 stop $dir/index.js

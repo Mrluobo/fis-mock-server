@@ -22,7 +22,7 @@ var home = getUserHome();
 
 // 读取配置文件
 var confPath = path.join(home, '.mock/server-conf.js');
-var config = require(confPath);
+var config ;
 
 // 静态服务器  默认为index.html
 app.use(serve(path.join(home, '.mock'), {
@@ -44,6 +44,7 @@ function Options() {
 
 // 优先处理文件上传 multipart类型请求
 app.use(function * (next) {
+    config = require(confPath);
     if (!this.request.is('multipart/*')) {
         return yield next;
     }
@@ -71,6 +72,7 @@ app.use(function * (next) {
 })
 // 处理普通get
 app.use(function *(next) {
+    config = require(confPath);
     if(this.request.method != 'GET'){
         return yield next;
     }
@@ -95,6 +97,8 @@ app.use(function *(next) {
 });
 // 处理普通POST
 app.use(function *() {
+    config = require(confPath);
+
     if(this.request.method != 'POST'){
         return yield next;
     }
