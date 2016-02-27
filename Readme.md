@@ -39,6 +39,19 @@ then release files in `~/.mock/` use [fis3](https://github.com/fex-team/fis3)
 
 `fis3 release -d ~/.mock/`
 
+or
+
+add
+```
+fis.media('test').match('*',{
+    deploy: fis.plugin('local-deliver', {
+        to: '~/.mock'
+    }
+})
+```
+
+open  `http://127.0.0.1:3000/` will see your project
+
 ### stop
 Run `fis-mock-server stop`
 
@@ -46,11 +59,14 @@ Run `fis-mock-server stop`
 
 Run `fis-mock-server kill`
 
+## todo
+
+#### Custom listen port
 
 
 
  # License
- MIT © 2015 mrluobo (602003869@.com)
+ MIT © 2015 mrluobo (602003869@qq.com)
 
  [npm-image]: https://badge.fury.io/js/fis-mock-server.svg
  [npm-url]: https://www.npmjs.com/package/fis-mock-server
