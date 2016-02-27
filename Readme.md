@@ -65,7 +65,7 @@ Run `fis-mock-server kill`
 
 
 
- # License
+# License
  MIT © 2015 mrluobo (602003869@qq.com)
 
  [npm-image]: https://badge.fury.io/js/fis-mock-server.svg
